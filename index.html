@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pascale & Marise Wedding Invitation</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- HERO -->
+  <section class="parallax hero">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Pascale &amp; Marise</h1>
+      <h2>20.12.2025</h2>
+    </div>
+  </section>
+
+  <!-- VERSE -->
+  <section class="info">
+    <blockquote>
+      <p>“Two are better than one. For if they fall, one will lift up the other.”</p>
+      <em>Ecclesiastes 4:9-12</em>
+    </blockquote>
+  </section>
+
+  <!-- INVITATION -->
+  <section class="parallax parallax-2">
+    <div class="overlay"></div>
+    <div class="content white">
+      <p class="subtitle">With joyous hearts,</p>
+      <h3>Zgheib &amp; Nassar Families</h3>
+      <p>Request the honor of your presence at the wedding of their son and daughter</p>
+      <h1>Pascale &amp; Marise</h1>
+      <p>Saturday, December 20, 2025</p>
+    </div>
+  </section>
+
+  <!-- CEREMONY -->
+  <section class="info">
+    <h2>Wedding Ceremony</h2>
+    <p>4:00 PM Beirut Time (GMT+3)</p>
+    <p>Christ the King Convent – Zouk Mosbeh<br>دير يسوع الملك - زوق مصبح</p>
+    <a class="btn" href="https://maps.app.goo.gl/WwqDcm8RjoBKyrH27" target="_blank">View Location</a>
+  </section>
+
+  <section class="parallax parallax-3">
+    <!-- <div class="overlay"></div>
+    <div class="content white">
+      <h2>Gift Registry</h2>
+      <p>Your love, laughter, and presence are all we could wish for on our special day.<br>
+         For those who wish, a wedding list is available at</p>
+      <h3>Whish Money</h3>
+      <p>Account #20747888</p>
+    </div> -->
+  </section>
+
+  <!-- PARTY -->
+  <section class="info">
+    <h2>Wedding Party</h2>
+    <p>6:30 PM Beirut Time (GMT+3)</p>
+    <p>Habtoor Metropolitan Palace Hotel – Sin El Fil</p>
+    <a class="btn" href="https://maps.app.goo.gl/PSxr5kFVRTa5MKf86" target="_blank">View Location</a>
+  </section>
+
+  <!-- GIFTS -->
+  <section class="parallax parallax-4">
+    <div class="overlay"></div>
+    <div class="content white">
+      <h2>Gift Registry</h2>
+      <p>Your love, laughter, and presence are all we could wish for on our special day.<br>
+         For those who wish, a wedding list is available at</p>
+      <h3>Whish Money</h3>
+      <p>Account #20747888</p>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="info">
+    <h2>Be Our Guest</h2>
+    <p>Please reply before December 1, 2025</p>
+
+    <form id="rsvpForm">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" placeholder="Your full name" required>
+
+      <label for="attending">Are you attending?</label>
+      <select id="attending" name="attending" required>
+        <option value="">— Select —</option>
+        <option value="Yes, joyfully attending">💖 Yes, joyfully attending</option>
+        <option value="Regretfully cannot attend">💌 Regretfully cannot attend</option>
+      </select>
+
+      <label for="message">Your wishes</label>
+      <textarea id="message" name="message" rows="3" maxlength="120" placeholder="Write a short note (optional)"></textarea>
+
+      <button type="submit">Send RSVP</button>
+      <p id="status" class="status"></p>
+    </form>
+  </section>
+
+  <script>
+    const scriptURL = 'https://sheetdb.io/api/v1/5a5tacg0ujbif';
+    const form = document.getElementById('rsvpForm');
+    const status = document.getElementById('status');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const data = {
+        name: form.name.value.trim(),
+        attending: form.attending.value,
+        message: form.message.value.trim(),
+      };
+
+      status.textContent = '⏳ Sending...';
+
+      try {
+        const res = await fetch(scriptURL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          status.textContent = '✅ Thank you! RSVP submitted.';
+          form.reset();
+        } else {
+          throw new Error('Failed to send');
+        }
+      } catch (error) {
+        status.textContent = '❌ Error sending RSVP. Please try again.';
+      }
+    });
+  </script>
+</body>
+</html>
