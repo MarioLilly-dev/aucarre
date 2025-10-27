@@ -125,3 +125,49 @@ button:hover {
   h1 { font-size: 36px; }
   h2, h3, p { font-size: 18px; }
 }
+
+
+.footer {
+  background: #f9f9f9;
+  text-align: center;
+  padding: 25px 10px;
+  font-size: 16px;
+  color: #333;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer a {
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #555;
+}
+
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s, background 0.3s;
+}
+
+.music-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+}
+
+.music-btn:active {
+  transform: scale(0.95);
+}

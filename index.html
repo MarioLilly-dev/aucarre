@@ -12,6 +12,11 @@
 </head>
 
 <body>
+    <audio id="bgMusic" autoplay loop>
+    <source src="./assets/audio.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+
   <!-- HERO -->
   <section class="parallax hero">
     <div class="overlay"></div>
@@ -50,14 +55,6 @@
   </section>
 
   <section class="parallax parallax-3">
-    <!-- <div class="overlay"></div>
-    <div class="content white">
-      <h2>Gift Registry</h2>
-      <p>Your love, laughter, and presence are all we could wish for on our special day.<br>
-         For those who wish, a wedding list is available at</p>
-      <h3>Whish Money</h3>
-      <p>Account #20747888</p>
-    </div> -->
   </section>
 
   <!-- PARTY -->
@@ -99,10 +96,25 @@
       <label for="message">Your wishes</label>
       <textarea id="message" name="message" rows="3" maxlength="120" placeholder="Write a short note (optional)"></textarea>
 
-      <button type="submit">Send RSVP</button>
-      <p id="status" class="status"></p>
+      <button type="submit" id="status">Send RSVP</button>
+      <!-- <p id="status" class="status"></p> -->
     </form>
   </section>
+
+    <!-- Music toggle button -->
+    <button id="musicToggle" class="music-btn" aria-label="Toggle music">🔊</button>
+
+
+
+  <footer class="footer">
+    <p>
+        Powered by 
+        <a href="https://linktr.ee/AuCarre.lb" target="_blank" rel="noopener noreferrer">
+            AUCARRE EVENTS
+        </a>
+    </p>
+    </footer>
+
 
   <script>
     const scriptURL = 'https://sheetdb.io/api/v1/5a5tacg0ujbif';
@@ -118,7 +130,7 @@
         message: form.message.value.trim(),
       };
 
-      status.textContent = '⏳ Sending...';
+      status.textContent = 'Sending...';
 
       try {
         const res = await fetch(scriptURL, {
@@ -128,15 +140,70 @@
         });
 
         if (res.ok) {
-          status.textContent = '✅ Thank you! RSVP submitted.';
+          status.textContent = 'Thank you! RSVP submitted.';
           form.reset();
         } else {
           throw new Error('Failed to send');
         }
       } catch (error) {
-        status.textContent = '❌ Error sending RSVP. Please try again.';
+        status.textContent = 'Error sending RSVP. Please try again.';
       }
     });
+
+    // Try playing automatically on load
+    window.addEventListener('load', () => {
+        bgMusic.play().catch(() => {
+        console.log('Autoplay blocked, waiting for interaction...');
+        });
+    });
+
+    // If autoplay was blocked, play after any click/touch
+    document.addEventListener('click', tryPlay);
+    document.addEventListener('touchstart', tryPlay);
+    document.addEventListener('scroll', tryPlay);
+
+    function tryPlay() {
+        bgMusic.play().then(() => {
+        document.removeEventListener('click', tryPlay);
+        document.removeEventListener('touchstart', tryPlay);
+        document.removeEventListener('scroll', tryPlay);
+        });
+    }
+
+    const bgMusic = document.getElementById('bgMusic');
+    const toggle = document.getElementById('musicToggle');
+
+  // Try autoplay on load
+    window.addEventListener('load', () => {
+        bgMusic.play().catch(() => console.log('Autoplay blocked until user interacts.'));
+    });
+
+  // Allow play on first user interaction (for browsers that block autoplay)
+    document.addEventListener('click', tryPlay);
+    document.addEventListener('touchstart', tryPlay);
+
+    var isMusicPaused = false;
+    function tryPlay() {
+        if(isMusicPaused == false) {
+            bgMusic.play().then(() => {
+            document.removeEventListener('click', tryPlay);
+            document.removeEventListener('touchstart', tryPlay);
+            });
+        }
+    }
+
+  // Toggle play/pause
+  toggle.addEventListener('click', () => {
+    if (bgMusic.paused) {
+      bgMusic.play();
+      toggle.textContent = '🔊';
+      isMusicPaused = false
+    } else {
+      bgMusic.pause();
+      toggle.textContent = '🔈';
+      isMusicPaused = true;
+    }
+  });
   </script>
 </body>
 </html>
