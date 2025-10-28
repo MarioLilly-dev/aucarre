@@ -18,6 +18,9 @@ body {
   width: 100%;
   max-width: 100%;
   overflow: visible;
+  background-repeat: no-repeat;
+  transform: translateZ(0); /* Helps Safari GPU rendering */
+  will-change: transform;
 }
 
 .parallax.hero {
@@ -248,3 +251,8 @@ button:hover {
   50% { opacity: 0.6; }
 }
 
+@supports (-webkit-overflow-scrolling: touch) {
+  .parallax {
+    background-attachment: scroll; /* fallback */
+  }
+}
