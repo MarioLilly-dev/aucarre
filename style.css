@@ -259,7 +259,7 @@ button:hover {
 
 
 
-@supports (-webkit-touch-callout: none) {
+@supports (-webkit-overflow-scrolling: touch) {
   .parallax {
     transform: translateZ(0);
     will-change: transform;
