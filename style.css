@@ -19,8 +19,6 @@ body {
   max-width: 100%;
   overflow: visible;
   background-repeat: no-repeat;
-  transform: translateZ(0); /* Helps Safari GPU rendering */
-  will-change: transform;
 }
 
 .parallax.hero {
@@ -33,11 +31,19 @@ body {
 }
 
 .parallax-3 {
-  background-image: url('./assets/image00040.jpeg');
+  background-image: url('./assets/image00047.jpeg');
 }
 
 .parallax-4 {
   background-image: url('./assets/image00016.jpeg');
+}
+
+.parallax-5 {
+  background-image: url('./assets/image00017.jpeg');
+}
+
+.parallax-6 {
+  background-image: url('./assets/image00024.jpeg');
 }
 
 .overlay {
@@ -251,8 +257,48 @@ button:hover {
   50% { opacity: 0.6; }
 }
 
-@supports (-webkit-overflow-scrolling: touch) {
+
+
+@supports (-webkit-touch-callout: none) {
   .parallax {
-    background-attachment: scroll; /* fallback */
+    transform: translateZ(0);
+    will-change: transform;
+    background-attachment: scroll; /* fallback for iOS */
   }
+}
+
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  color: #000;
+  text-align: center;
+}
+
+.countdown div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown span {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.countdown small {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+
+
+#countdown div {
+  animation: fadeInUp 1s ease forwards;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
