@@ -15,10 +15,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
 }
 
 .parallax.hero {
-  background-image: url('./assets/image00017.jpeg'); /* Replace with your image/video fallback */
+  background-image: url('./assets/image00019.jpeg');
+  height: 100vh;
 }
 
 .parallax-2 {
@@ -42,7 +46,6 @@ body {
 .content {
   position: relative;
   z-index: 2;
-  color: #fff;
 }
 
 .content.white {
@@ -148,18 +151,15 @@ button:hover {
 }
 
 .music-btn {
-  position: fixed;
-  bottom: 20px;
+ position: fixed;
+  bottom: 7%;
   left: 20px;
   z-index: 999;
-  background: rgba(255, 255, 255, 0.85);
+  /* background: rgba(255, 255, 255, 0.85); */
   border: none;
-  border-radius: 50%;
-  width: 55px;
-  height: 55px;
-  font-size: 24px;
+  width: 25px ;
+  
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   transition: transform 0.2s, background 0.3s;
 }
 
@@ -171,3 +171,80 @@ button:hover {
 .music-btn:active {
   transform: scale(0.95);
 }
+
+#tapToStart {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: 'Cormorant SC', serif;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transition: opacity 0.8s ease;
+  overscroll-behavior: contain;
+  touch-action: none;
+}
+
+#tapToStart.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Header section */
+.tap-header {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.tap-header h1 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.tap-header p {
+  font-size: 1rem;
+  margin-top: 8px;
+  opacity: 0.9;
+}
+
+/* Centered button */
+.tap-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tap-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: white;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  padding: 12px 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.tap-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
