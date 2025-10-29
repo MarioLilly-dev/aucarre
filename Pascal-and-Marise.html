@@ -125,6 +125,17 @@
         <option value="Regretfully cannot attend">💌 Regretfully cannot attend</option>
       </select>
 
+    
+        <label for="guests">Number of Guests</label>
+        <input
+          type="number"
+          id="guests"
+          name="guests"
+          min="1"
+          max="10"
+          placeholder="Enter number of guests"
+        />
+
       <label for="message">Your wishes</label>
       <textarea id="message" name="message" rows="3" maxlength="120" placeholder="Write a short note (optional)"></textarea>
 
@@ -158,6 +169,7 @@
         name: form.name.value.trim(),
         attending: form.attending.value,
         message: form.message.value.trim(),
+        numberOfGuests: form.guests.value.trim(),
       };
 
       status.textContent = 'Sending...';
