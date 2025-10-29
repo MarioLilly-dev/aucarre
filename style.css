@@ -39,11 +39,11 @@ body {
 }
 
 .parallax-5 {
-  background-image: url('./assets/image00017.jpeg');
+  background-image: url('./assets/0001.jpg');
 }
 
 .parallax-6 {
-  background-image: url('./assets/image00024.jpeg');
+  background-image: url('./assets/0002.jpg');
 }
 
 .overlay {
@@ -160,15 +160,18 @@ button:hover {
 }
 
 .music-btn {
- position: fixed;
-  bottom: 7%;
+  position: fixed;
+  bottom: 20px;
   left: 20px;
   z-index: 999;
-  /* background: rgba(255, 255, 255, 0.85); */
+  background: rgba(255, 255, 255, 0.85);
   border: none;
-  width: 25px ;
-  
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  font-size: 24px;
   cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   transition: transform 0.2s, background 0.3s;
 }
 
@@ -180,6 +183,7 @@ button:hover {
 .music-btn:active {
   transform: scale(0.95);
 }
+
 
 #tapToStart {
   position: fixed;
